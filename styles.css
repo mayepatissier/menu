@@ -1,10 +1,9 @@
-/* Mâye Pâtissier — GitHub Pages uyumlu, mobil öncelikli menü */
-
 :root {
   --paper: #f3e6cc;
   --paper-light: #fbf3e3;
   --ink: #4b2a12;
   --wine: #7b1128;
+  --sage: #61725a;
   --line: rgba(75, 42, 18, .62);
   --shadow: 0 18px 45px rgba(57, 31, 11, .18);
 }
@@ -20,10 +19,7 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background:
-    radial-gradient(circle at 20% 15%, rgba(115, 76, 35, .07), transparent 27%),
-    radial-gradient(circle at 80% 70%, rgba(115, 76, 35, .06), transparent 30%),
-    var(--paper);
+  background: linear-gradient(135deg, #f3e6cc 0%, #fbf3e3 52%, #ead9b9 100%);
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 18px;
   line-height: 1.35;
@@ -34,19 +30,23 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-  opacity: .16;
+  opacity: .14;
   pointer-events: none;
-  background-image:
-    repeating-linear-gradient(0deg, rgba(70, 40, 15, .035) 0 1px, transparent 1px 4px);
+  background-image: repeating-linear-gradient(0deg, rgba(70, 40, 15, .035) 0 1px, transparent 1px 4px);
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 .menu-shell {
   width: min(100% - 22px, 760px);
   margin: 12px auto;
-  padding: clamp(22px, 5vw, 52px);
+  padding: 46px 46px 52px;
   border: 2px solid var(--ink);
   border-radius: 42px;
-  background: rgba(251, 243, 227, .84);
+  background: rgba(251, 243, 227, .88);
   box-shadow: var(--shadow);
   position: relative;
 }
@@ -61,6 +61,7 @@ body::before {
 }
 
 .brand,
+.photo-hero,
 .menu-card,
 .category-nav,
 footer {
@@ -82,9 +83,9 @@ footer {
 .brand h1 {
   margin: 0;
   font-weight: 500;
-  font-size: clamp(3.1rem, 13vw, 6.2rem);
+  font-size: 5.8rem;
   line-height: .72;
-  letter-spacing: .015em;
+  letter-spacing: 0;
 }
 
 .brand h1 span {
@@ -97,7 +98,65 @@ footer {
   margin: 24px 0 0;
   color: var(--wine);
   font-family: "Great Vibes", cursive;
-  font-size: clamp(2.1rem, 8vw, 3.5rem);
+  font-size: 3.2rem;
+}
+
+.photo-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(124px, .65fr);
+  gap: 12px;
+  margin: 8px auto 24px;
+}
+
+.photo-hero-main {
+  margin: 0;
+}
+
+.photo-hero-main,
+.photo-hero-stack img,
+.photo-menu-list img {
+  overflow: hidden;
+  border: 1px solid rgba(75, 42, 18, .3);
+  background: rgba(255, 255, 255, .32);
+  box-shadow: 0 10px 24px rgba(57, 31, 11, .12);
+}
+
+.photo-hero-main {
+  position: relative;
+  min-height: 300px;
+  border-radius: 22px 8px 8px 22px;
+}
+
+.photo-hero-main img,
+.photo-hero-stack img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-hero-main figcaption {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  color: var(--paper-light);
+  background: rgba(75, 42, 18, .76);
+  border: 1px solid rgba(251, 243, 227, .42);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-weight: 600;
+}
+
+.photo-hero-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.photo-hero-stack img:first-child {
+  border-radius: 8px 22px 8px 8px;
+}
+
+.photo-hero-stack img:last-child {
+  border-radius: 8px 8px 22px 8px;
 }
 
 .category-nav {
@@ -114,7 +173,7 @@ footer {
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 8px 16px;
-  background: rgba(255,255,255,.22);
+  background: rgba(255, 255, 255, .24);
   font-weight: 600;
 }
 
@@ -156,7 +215,7 @@ footer {
   margin: 0;
   color: var(--wine);
   font-family: "Great Vibes", cursive;
-  font-size: clamp(2.8rem, 10vw, 4.3rem);
+  font-size: 4rem;
   font-weight: 400;
   line-height: 1;
 }
@@ -168,7 +227,7 @@ h3 {
   margin: 26px 0 12px;
   color: var(--wine);
   font-style: italic;
-  font-size: clamp(1.6rem, 6vw, 2.2rem);
+  font-size: 2rem;
   font-weight: 500;
   text-align: center;
 }
@@ -181,7 +240,8 @@ h3::after {
   background: var(--line);
 }
 
-.menu-list {
+.menu-list,
+.photo-menu-list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -193,7 +253,7 @@ h3::after {
   align-items: start;
   gap: 8px;
   padding: 7px 0;
-  font-size: clamp(1.15rem, 4.8vw, 1.55rem);
+  font-size: 1.45rem;
 }
 
 .menu-list li::before {
@@ -225,13 +285,66 @@ h3::after {
   line-height: 1.35;
 }
 
-.menu-list small {
+.menu-list small,
+.photo-menu-list small {
   font-size: .7em;
   white-space: normal;
 }
 
 .menu-list.spacious li {
   padding: 13px 0;
+}
+
+.photo-menu-list {
+  display: grid;
+  gap: 12px;
+}
+
+.photo-menu-list li {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 92px;
+  padding: 10px;
+  border: 1px solid rgba(75, 42, 18, .18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .22);
+}
+
+.photo-menu-list img {
+  width: 82px;
+  height: 82px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.photo-menu-list span {
+  min-width: 0;
+  font-size: 1.45rem;
+}
+
+.item-copy {
+  min-width: 0;
+}
+
+.item-copy span {
+  display: block;
+  line-height: 1.14;
+}
+
+.item-copy p {
+  margin: 5px 0 0;
+  color: rgba(75, 42, 18, .78);
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.photo-menu-list strong {
+  color: var(--wine);
+  font-size: 1.35rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 footer {
@@ -250,7 +363,7 @@ footer p {
   font-size: 2rem;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 620px) {
   .menu-shell {
     width: calc(100% - 12px);
     margin: 6px auto;
@@ -264,17 +377,100 @@ footer p {
   }
 
   .brand h1 {
-    font-size: clamp(2.7rem, 15vw, 4rem);
+    font-size: 3.8rem;
+  }
+
+  .brand p {
+    font-size: 2.4rem;
+  }
+
+  .photo-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-hero-main {
+    min-height: 260px;
+    border-radius: 18px 18px 8px 8px;
+  }
+
+  .photo-hero-stack {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .photo-hero-stack img {
+    aspect-ratio: 1 / 1;
+  }
+
+  .photo-hero-stack img:first-child {
+    border-radius: 8px 8px 8px 18px;
+  }
+
+  .photo-hero-stack img:last-child {
+    border-radius: 8px 8px 18px 8px;
+  }
+
+  .section-heading h2 {
+    font-size: 3.2rem;
+  }
+
+  h3 {
+    font-size: 1.65rem;
   }
 
   .menu-list li {
     grid-template-columns: minmax(0, auto) 1fr auto;
     gap: 6px;
+    font-size: 1.25rem;
   }
 
   .menu-list small {
     display: inline;
     margin-top: 0;
+  }
+
+  .photo-menu-list li {
+    grid-template-columns: 72px minmax(0, 1fr) auto;
+    gap: 10px;
+    min-height: 82px;
+    padding: 8px;
+  }
+
+  .photo-menu-list img {
+    width: 72px;
+    height: 72px;
+  }
+
+  .photo-menu-list span {
+    font-size: 1.2rem;
+  }
+
+  .photo-menu-list strong {
+    font-size: 1.15rem;
+  }
+
+}
+
+@media (max-width: 380px) {
+  .menu-shell {
+    padding: 24px 18px;
+  }
+
+  .brand h1 {
+    font-size: 3.2rem;
+  }
+
+  .photo-menu-list li {
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+
+  .photo-menu-list img {
+    width: 64px;
+    height: 64px;
+    grid-row: span 2;
+  }
+
+  .photo-menu-list strong {
+    justify-self: start;
   }
 }
 
