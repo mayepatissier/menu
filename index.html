@@ -207,5 +207,63 @@
       <p>Afiyet olsun</p>
     </footer>
   </main>
+
+  <div class="image-viewer" id="image-viewer" aria-hidden="true">
+    <div class="image-viewer-panel" role="dialog" aria-modal="true" aria-label="Ürün fotoğrafı">
+      <button class="image-viewer-close" type="button" aria-label="Menüye dön">×</button>
+      <img src="" alt="" />
+      <p></p>
+      <button class="image-viewer-return" type="button">Menüye dön</button>
+    </div>
+  </div>
+
+  <script>
+    const viewer = document.querySelector("#image-viewer");
+    const viewerImage = viewer.querySelector("img");
+    const viewerCaption = viewer.querySelector("p");
+    const closeButtons = viewer.querySelectorAll("button");
+    let lastOpenedImage = null;
+
+    document.querySelectorAll(".photo-hero img, .photo-menu-list img").forEach((image) => {
+      image.tabIndex = 0;
+      image.setAttribute("role", "button");
+      image.setAttribute("aria-label", `${image.alt} fotoğrafını büyüt`);
+
+      const openViewer = () => {
+        lastOpenedImage = image;
+        viewerImage.src = image.src;
+        viewerImage.alt = image.alt;
+        viewerCaption.textContent = image.alt;
+        viewer.classList.add("is-open");
+        viewer.setAttribute("aria-hidden", "false");
+        closeButtons[0].focus();
+      };
+
+      image.addEventListener("click", openViewer);
+      image.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openViewer();
+        }
+      });
+    });
+
+    const closeViewer = () => {
+      viewer.classList.remove("is-open");
+      viewer.setAttribute("aria-hidden", "true");
+      viewerImage.removeAttribute("src");
+      if (lastOpenedImage) {
+        lastOpenedImage.focus({ preventScroll: true });
+      }
+    };
+
+    closeButtons.forEach((button) => button.addEventListener("click", closeViewer));
+    viewer.addEventListener("click", (event) => {
+      if (event.target === viewer) closeViewer();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && viewer.classList.contains("is-open")) closeViewer();
+    });
+  </script>
 </body>
 </html>

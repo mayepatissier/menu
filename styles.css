@@ -302,10 +302,10 @@ h3::after {
 
 .photo-menu-list li {
   display: grid;
-  grid-template-columns: 82px minmax(0, 1fr) auto;
+  grid-template-columns: 104px minmax(0, 1fr) auto;
   align-items: center;
   gap: 12px;
-  min-height: 92px;
+  min-height: 116px;
   padding: 10px;
   border: 1px solid rgba(75, 42, 18, .18);
   border-radius: 8px;
@@ -313,8 +313,8 @@ h3::after {
 }
 
 .photo-menu-list img {
-  width: 82px;
-  height: 82px;
+  width: 104px;
+  height: 104px;
   border-radius: 8px;
   object-fit: cover;
 }
@@ -429,15 +429,15 @@ footer p {
   }
 
   .photo-menu-list li {
-    grid-template-columns: 72px minmax(0, 1fr) auto;
+    grid-template-columns: 90px minmax(0, 1fr) auto;
     gap: 10px;
-    min-height: 82px;
+    min-height: 104px;
     padding: 8px;
   }
 
   .photo-menu-list img {
-    width: 72px;
-    height: 72px;
+    width: 90px;
+    height: 90px;
   }
 
   .photo-menu-list span {
@@ -460,12 +460,12 @@ footer p {
   }
 
   .photo-menu-list li {
-    grid-template-columns: 64px minmax(0, 1fr);
+    grid-template-columns: 76px minmax(0, 1fr);
   }
 
   .photo-menu-list img {
-    width: 64px;
-    height: 64px;
+    width: 76px;
+    height: 76px;
     grid-row: span 2;
   }
 
@@ -478,4 +478,92 @@ footer p {
   html {
     scroll-behavior: auto;
   }
+}
+
+.photo-hero img,
+.photo-menu-list img {
+  cursor: zoom-in;
+}
+
+.photo-hero img:focus-visible,
+.photo-menu-list img:focus-visible {
+  outline: 3px solid var(--wine);
+  outline-offset: 3px;
+}
+
+.image-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: none;
+  place-items: center;
+  padding: 18px;
+  background: rgba(30, 17, 8, .78);
+}
+
+.image-viewer.is-open {
+  display: grid;
+}
+
+.image-viewer-panel {
+  position: relative;
+  width: min(100%, 620px);
+  max-height: min(88vh, 860px);
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(251, 243, 227, .42);
+  border-radius: 16px;
+  background: var(--paper-light);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .38);
+}
+
+.image-viewer-panel img {
+  width: 100%;
+  max-height: 70vh;
+  border-radius: 10px;
+  object-fit: contain;
+  background: #2f1d11;
+}
+
+.image-viewer-panel p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.35rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.image-viewer-close,
+.image-viewer-return {
+  border: 1px solid var(--wine);
+  color: var(--paper-light);
+  background: var(--wine);
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.image-viewer-close {
+  position: absolute;
+  top: -13px;
+  right: -10px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.image-viewer-return {
+  justify-self: center;
+  border-radius: 999px;
+  padding: 9px 18px;
+  font-size: 1.15rem;
+}
+
+.image-viewer-close:focus-visible,
+.image-viewer-return:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
 }
